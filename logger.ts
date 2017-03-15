@@ -3,7 +3,7 @@
 import * as bunyan from 'bunyan';
 import config from './env-config';
 const BunyanAWS = require('bunyan-aws');
-const pkg = require('./package.json');
+const pkg = require('../package.json');
 
 // array of streams
 let streams: any[] = [];

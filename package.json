@@ -2,13 +2,18 @@
   "name": "node-services-common-code",
   "version": "1.0.1",
   "description": "Logger and env-config stay the same across all node services.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "dependencies": {
     "@types/bunyan": "0.0.36",
     "bunyan": "^1.8.8",
-    "bunyan-aws": "^0.1.0"
+    "bunyan-aws": "^0.1.0",
+    "lodash": "^4.17.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/lodash": "^4.14.55",
+    "tslint": "^4.5.1",
+    "typescript": "^2.2.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 import { logger }           from './logger';
 let env = process.argv.indexOf('-env') === -1 ? (process.env.ENV || 'development') : process.argv[process.argv.indexOf('-env') + 1];
 
-let configJson = require('../../envConfig.json');
+let configJson = require('../../../config.json');
 let env_Config = configJson[env];
 let hasInstanceNumber: any  = process.argv.indexOf('-instance') !== -1;
 let envConfig: any = _.extend(configJson, env_Config);
