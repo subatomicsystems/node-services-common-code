@@ -1,0 +1,9 @@
+{
+  "production": {
+  },
+  "stage": {
+    "base": "/stage"
+  },
+  "development": {
+  }
+}

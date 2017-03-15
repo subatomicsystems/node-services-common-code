@@ -1,0 +1,25 @@
+{
+  "name": "node-services-common-code",
+  "version": "1.0.1",
+  "description": "Logger and env-config stay the same across all node services.",
+  "main": "index.js",
+  "dependencies": {
+    "@types/bunyan": "0.0.36",
+    "bunyan": "^1.8.8",
+    "bunyan-aws": "^0.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/subatomicsystems/node-services-common-code.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/subatomicsystems/node-services-common-code/issues"
+  },
+  "homepage": "https://github.com/subatomicsystems/node-services-common-code#readme"
+}
