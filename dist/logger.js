@@ -2,7 +2,7 @@
 const bunyan = require("bunyan");
 const env_config_1 = require("./env-config");
 const BunyanAWS = require('bunyan-aws');
-const pkg = require('../package.json');
+const pkg = require('../../package.json');
 let streams = [];
 if (process.env.LOG !== 'false') {
     streams = [{
