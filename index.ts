@@ -1,4 +1,5 @@
-import logger from './logger';
+import logger    from './logger';
 import envConfig from './env-config';
-import * as express from 'express';
-export { logger, envConfig }
+import cors      from './cors';
+
+export { logger, envConfig, cors }
