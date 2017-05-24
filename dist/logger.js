@@ -1,5 +1,4 @@
 'use strict';
-Object.defineProperty(exports, "__esModule", { value: true });
 const bunyan = require("bunyan");
 const env_config_1 = require("./env-config");
 const BunyanAWS = require('bunyan-aws');
@@ -48,5 +47,6 @@ process.on('uncaughtException', (err) => {
 process.on('SIGTERM', (err) => {
     logger.fatal('SIGTERM', err);
 });
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = logger;
 //# sourceMappingURL=logger.js.map
