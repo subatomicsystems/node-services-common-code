@@ -3,11 +3,16 @@
 // Any global settings that are also in the environment specific settings will be overridden
 
 import * as _ from 'lodash';
-import { logger }           from './logger';
+import { logger } from './logger';
 let env = process.argv.indexOf('-env') === -1 ? (process.env.ENV || 'development') : process.argv[process.argv.indexOf('-env') + 1];
+let configJson: any = {};
+try {
+  configJson = require('../../../config.json');
+} catch (err) {
+  console.warn('No config.json file was found for this repository');
+}
 
-let configJson = require('../../../config.json');
-let env_Config = configJson[env];
+let env_Config = configJson[env] || {};
 let hasInstanceNumber: any  = process.argv.indexOf('-instance') !== -1;
 let envConfig: any = _.extend(configJson, env_Config);
 if (!envConfig.base) {
