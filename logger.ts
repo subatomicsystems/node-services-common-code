@@ -54,8 +54,8 @@ process.on('uncaughtException', (err: any) => {
   logger.fatal('uncaught exception', err);
 });
 
-process.on('SIGTERM', (err: any) => {
-  logger.fatal('SIGTERM', err);
+process.on('SIGTERM', () => {
+  logger.fatal('SIGTERM');
 });
 
 export { logger };
