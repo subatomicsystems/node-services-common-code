@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const _ = require("lodash");
 const logger_1 = require("./logger");
 let env = process.argv.indexOf('-env') === -1 ? (process.env.ENV || 'development') : process.argv[process.argv.indexOf('-env') + 1];
@@ -24,6 +25,5 @@ if (hasInstanceNumber) {
         logger_1.logger.warn('Number of instances is expected not to exceed 9 because of possible port conflicts with other services.');
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = envConfig;
 //# sourceMappingURL=env-config.js.map

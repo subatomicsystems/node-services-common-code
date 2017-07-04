@@ -2,8 +2,9 @@
 
 import * as bunyan from 'bunyan';
 import config from './env-config';
-const BunyanAWS = require('bunyan-aws');
+const createCWStream = require('bunyan-cloudwatch');
 const pkg = require('../../../package.json');
+// const pkg = {name: 'test'};
 
 // array of streams
 let streams: any[] = [];
@@ -29,18 +30,17 @@ if (process.env.LOG !== 'false') {
 // we don't want to log to CloudWatch for local development
 if (config.env !== 'development') {
   // create a stream that pipes it into cloudwatch
-  const CwStream = new BunyanAWS({
+  const cloudWatchStream = createCWStream({
     logGroupName: `/node-apis/${config.env}`,
     logStreamName: pkg.name,
-    cloudWatchOptions: {
-      region: 'us-west-1',
-      sslEnabled: true
+    cloudWatchLogsOptions: {
+      region: 'us-west-1'
     }
   });
   streams.push({
-    stream: CwStream,
+    stream: cloudWatchStream,
     type: 'raw',
-    level: 'info',
+    level: 'info'
   });
 }
 

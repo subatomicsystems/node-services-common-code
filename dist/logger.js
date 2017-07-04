@@ -1,7 +1,8 @@
 'use strict';
+Object.defineProperty(exports, "__esModule", { value: true });
 const bunyan = require("bunyan");
 const env_config_1 = require("./env-config");
-const BunyanAWS = require('bunyan-aws');
+const createCWStream = require('bunyan-cloudwatch');
 const pkg = require('../../../package.json');
 let streams = [];
 if (process.env.LOG !== 'false') {
@@ -22,18 +23,17 @@ if (process.env.LOG !== 'false') {
         }];
 }
 if (env_config_1.default.env !== 'development') {
-    const CwStream = new BunyanAWS({
+    const cloudWatchStream = createCWStream({
         logGroupName: `/node-apis/${env_config_1.default.env}`,
         logStreamName: pkg.name,
-        cloudWatchOptions: {
-            region: 'us-west-1',
-            sslEnabled: true
+        cloudWatchLogsOptions: {
+            region: 'us-west-1'
         }
     });
     streams.push({
-        stream: CwStream,
+        stream: cloudWatchStream,
         type: 'raw',
-        level: 'info',
+        level: 'info'
     });
 }
 const logger = bunyan.createLogger({
@@ -47,6 +47,5 @@ process.on('uncaughtException', (err) => {
 process.on('SIGTERM', (err) => {
     logger.fatal('SIGTERM', err);
 });
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = logger;
 //# sourceMappingURL=logger.js.map
