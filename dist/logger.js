@@ -44,8 +44,8 @@ exports.logger = logger;
 process.on('uncaughtException', (err) => {
     logger.fatal('uncaught exception', err);
 });
-process.on('SIGTERM', (err) => {
-    logger.fatal('SIGTERM', err);
+process.on('SIGTERM', () => {
+    logger.fatal('SIGTERM');
 });
 exports.default = logger;
 //# sourceMappingURL=logger.js.map
