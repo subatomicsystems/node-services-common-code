@@ -5,7 +5,7 @@ const env_config_1 = require("./env-config");
 const createCWStream = require('bunyan-cloudwatch');
 const pkg = require('../../../package.json');
 let streams = [];
-if (process.env.LOG !== 'false') {
+if (process.env['LOG'] !== 'false') {
     streams = [{
             level: 'info',
             type: 'rotating-file',

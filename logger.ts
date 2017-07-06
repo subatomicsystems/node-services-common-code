@@ -9,7 +9,7 @@ const pkg = require('../../../package.json');
 // array of streams
 let streams: any[] = [];
 
-if (process.env.LOG !== 'false') {
+if (process.env['LOG'] !== 'false') {
   streams = [{
     level: 'info',
     type: 'rotating-file',
