@@ -1,6 +1,6 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
-const bunyan = require("bunyan");
+const bunyan = require('bunyan');
 const env_config_1 = require("./env-config");
 const createCWStream = require('bunyan-cloudwatch');
 const pkg = require('../../../package.json');

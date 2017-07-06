@@ -1,6 +1,6 @@
 'use strict';
 
-import * as bunyan from 'bunyan';
+const bunyan = require('bunyan');
 import config from './env-config';
 const createCWStream = require('bunyan-cloudwatch');
 const pkg = require('../../../package.json');
