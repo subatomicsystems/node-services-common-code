@@ -4,7 +4,7 @@
 
 import * as _ from 'lodash';
 import { logger } from './logger';
-let env = process.argv.indexOf('-env') === -1 ? (process.env.ENV || 'development') : process.argv[process.argv.indexOf('-env') + 1];
+let env = process.argv.indexOf('-env') === -1 ? (process.env['ENV'] || 'development') : process.argv[process.argv.indexOf('-env') + 1];
 let configJson: any = {};
 try {
   configJson = require('../../../config.json');

@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const _ = require("lodash");
 const logger_1 = require("./logger");
-let env = process.argv.indexOf('-env') === -1 ? (process.env.ENV || 'development') : process.argv[process.argv.indexOf('-env') + 1];
+let env = process.argv.indexOf('-env') === -1 ? (process.env['ENV'] || 'development') : process.argv[process.argv.indexOf('-env') + 1];
 let configJson = {};
 try {
     configJson = require('../../../config.json');
