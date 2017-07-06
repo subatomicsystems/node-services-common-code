@@ -1,6 +1,6 @@
 {
   "name": "node-services-common-code",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "Logger and env-config stay the same across all node services.",
   "main": "dist/index",
   "dependencies": {
