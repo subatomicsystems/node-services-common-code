@@ -1,6 +1,6 @@
 {
   "name": "node-services-common-code",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Logger and env-config stay the same across all node services.",
   "main": "dist/index.js",
   "dependencies": {
@@ -12,7 +12,6 @@
     "typescript": "^2.2.1"
   },
   "devDependencies": {
-    "@types/bunyan": "^1.8.0",
     "@types/express": "^4.0.35",
     "@types/lodash": "^4.14.55",
     "tslint": "^4.5.1",
