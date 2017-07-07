@@ -1,9 +1,13 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+const fs = require("fs");
 const bunyan = require("bunyan");
 const env_config_1 = require("./env-config");
 const createCWStream = require('bunyan-cloudwatch');
-const pkg = require('../../../package.json');
+let pkg = { name: 'node-services-common-code' };
+if (fs.existsSync('../../../package.json')) {
+    pkg = require('../../../package.json');
+}
 let streams = [];
 if (process.env['LOG'] !== 'false') {
     streams = [{

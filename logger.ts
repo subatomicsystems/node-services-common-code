@@ -1,10 +1,14 @@
 'use strict';
 
+import * as fs from 'fs';
 import * as bunyan from 'bunyan';
 import config from './env-config';
 const createCWStream = require('bunyan-cloudwatch');
-const pkg = require('../../../package.json');
-// const pkg = {name: 'test'};
+
+let pkg = {name: 'node-services-common-code'};
+if (fs.existsSync('../../../package.json')) {
+  pkg = require('../../../package.json');
+}
 
 // array of streams
 let streams: any[] = [];
