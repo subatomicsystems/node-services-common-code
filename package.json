@@ -1,6 +1,6 @@
 {
   "name": "node-services-common-code",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "Logger and env-config stay the same across all node services.",
   "main": "dist/index",
   "dependencies": {
@@ -10,7 +10,7 @@
     "find-config": "^1.0.0",
     "lodash": "^4.17.4",
     "mv": "^2.1.1",
-    "parent-package-json": "^2.0.0",
+    "parent-package-json": "bertyhell/parent-package-json",
     "safe-json-stringify": "^1.0.4",
     "typescript": "^2.2.1"
   },
