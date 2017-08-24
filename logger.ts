@@ -2,13 +2,12 @@
 
 import * as bunyan from 'bunyan';
 import config from './env-config';
-const findConfig = require('find-config');
+const parentPackageJson = require('parent-package-json');
 const createCWStream = require('bunyan-cloudwatch');
 
-let pkgPath = findConfig.read('package.json');
 let pkg: {name: string};
-if (pkgPath) {
-  pkg = require(pkgPath);
+if (parentPackageJson()) {
+  pkg = parentPackageJson().parse();
 } else {
   pkg = {name: 'could-not-find-package-json'};
 }

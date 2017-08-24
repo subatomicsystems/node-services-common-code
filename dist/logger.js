@@ -2,12 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const bunyan = require("bunyan");
 const env_config_1 = require("./env-config");
-const findConfig = require('find-config');
+const parentPackageJson = require('parent-package-json');
 const createCWStream = require('bunyan-cloudwatch');
-let pkgPath = findConfig.read('package.json');
 let pkg;
-if (pkgPath) {
-    pkg = require(pkgPath);
+if (parentPackageJson()) {
+    pkg = parentPackageJson().parse();
 }
 else {
     pkg = { name: 'could-not-find-package-json' };
