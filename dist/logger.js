@@ -1,21 +1,23 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 const bunyan = require("bunyan");
+const path = require("path");
+const fs = require("fs");
 const env_config_1 = require("./env-config");
 const createCWStream = require('bunyan-cloudwatch');
 const parent = require('parent-package-json');
 let pkg;
-let parentPackageJsonPath;
-try {
-    parentPackageJsonPath = parent('/');
-}
-catch (ex) {
-    console.error(ex);
-}
-if (parentPackageJsonPath) {
-    pkg = parent('/').parse();
+let localPackagePath = path.join(process.cwd(), 'package.json');
+if (fs.existsSync(localPackagePath)) {
+    pkg = require(localPackagePath);
 }
 else {
+    let parentPackageJsonPath = parent(process.cwd());
+    if (parentPackageJsonPath) {
+        pkg = parent().parse();
+    }
+}
+if (!pkg || pkg.name === 'node-services-common-code') {
     pkg = { name: 'could-not-find-package-json' };
 }
 let streams = [];

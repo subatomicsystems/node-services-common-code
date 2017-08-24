@@ -1,21 +1,24 @@
 'use strict';
 
 import * as bunyan from 'bunyan';
+import * as path from 'path';
+import * as fs from 'fs';
 import config from './env-config';
 const createCWStream = require('bunyan-cloudwatch');
 
 const parent = require('parent-package-json');
 
 let pkg: {name: string};
-let parentPackageJsonPath: any;
-try {
-  parentPackageJsonPath = parent('/');
-} catch (ex) {
-  console.error(ex);
-}
-if (parentPackageJsonPath) {
-  pkg = parent('/').parse();
+let localPackagePath = path.join(process.cwd(), 'package.json');
+if (fs.existsSync(localPackagePath)) {
+  pkg = require(localPackagePath);
 } else {
+  let parentPackageJsonPath: any = parent(process.cwd());
+  if (parentPackageJsonPath) {
+    pkg = parent().parse();
+  }
+}
+if (!pkg || pkg.name === 'node-services-common-code') {
   pkg = {name: 'could-not-find-package-json'};
 }
 
