@@ -15,18 +15,6 @@ let streams: any[] = [];
 
 if (process.env['LOG'] !== 'false') {
   streams = [{
-    level: 'info',
-    type: 'rotating-file',
-    path: 'info.log',
-    period: '1d',
-    count: 3
-  }, {
-    level: 'error',
-    type: 'rotating-file',
-    path: 'error.log',
-    period: '1d',
-    count: 3
-  }, {
     stream: process.stdout
   }];
 }
