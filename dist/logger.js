@@ -1,12 +1,16 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs = require("fs");
 const bunyan = require("bunyan");
 const env_config_1 = require("./env-config");
+const findConfig = require('find-config');
 const createCWStream = require('bunyan-cloudwatch');
-let pkg = { name: 'node-services-common-code' };
-if (fs.existsSync('../../../package.json')) {
-    pkg = require('../../../package.json');
+let pkgPath = findConfig.read('package.json');
+let pkg;
+if (pkgPath) {
+    pkg = require(pkgPath);
+}
+else {
+    pkg = { name: 'could-not-find-package-json' };
 }
 let streams = [];
 if (process.env['LOG'] !== 'false') {
