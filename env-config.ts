@@ -14,7 +14,7 @@ try {
 
 let env_Config = configJson[env] || {};
 let hasInstanceNumber: any  = process.argv.indexOf('-instance') !== -1;
-let envConfig: any = _.extend(configJson, env_Config);
+let envConfig: any = _.merge(configJson, env_Config);
 if (!envConfig.base) {
   envConfig.base = '';
 }

@@ -12,7 +12,7 @@ catch (err) {
 }
 let env_Config = configJson[env] || {};
 let hasInstanceNumber = process.argv.indexOf('-instance') !== -1;
-let envConfig = _.extend(configJson, env_Config);
+let envConfig = _.merge(configJson, env_Config);
 exports.envConfig = envConfig;
 if (!envConfig.base) {
     envConfig.base = '';
