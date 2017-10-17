@@ -8,7 +8,7 @@ const createCWStream = require('bunyan-cloudwatch');
 
 const parent = require('parent-package-json');
 
-let pkg: {name: string};
+let pkg: {name: string} | null = null;
 let localPackagePath = path.join(process.cwd(), 'package.json');
 if (fs.existsSync(localPackagePath)) {
   pkg = require(localPackagePath);
