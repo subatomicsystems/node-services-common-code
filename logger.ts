@@ -5,13 +5,16 @@ import * as path from 'path';
 import * as fs from 'fs';
 import config from './env-config';
 
-let  logger: any;
+const createCWStream = require('bunyan-cloudwatch');
+const parent = require('parent-package-json');
+const isLambda = require('is-lambda');
 
-try {
-  const createCWStream = require('bunyan-cloudwatch');
+let logger: any;
 
-  const parent = require('parent-package-json');
-
+if (isLambda) {
+  // Lambda can log to cloudwatch by just calling console.log, console.error, ...
+  logger = console;
+} else {
   let pkg: { name: string } | null = null;
   let localPackagePath = path.join(process.cwd(), 'package.json');
   if (fs.existsSync(localPackagePath)) {
@@ -26,7 +29,7 @@ try {
     pkg = {name: 'could-not-find-package-json'};
   }
 
-// array of streams
+  // Array of streams
   let streams: any[] = [];
 
   if (process.env['LOG'] !== 'false') {
@@ -35,7 +38,7 @@ try {
     }];
   }
 
-// we don't want to log to CloudWatch for local development
+  // We don't want to log to CloudWatch for local development
   if (config.env !== 'development') {
     // create a stream that pipes it into cloudwatch
     const cloudWatchStream = createCWStream({
@@ -65,9 +68,6 @@ try {
   process.on('SIGTERM', () => {
     logger.fatal('SIGTERM');
   });
-
-} catch (err) {
-  console.log('[node-services-common-code] Failed to initialize logger', err);
 }
 
 export { logger };

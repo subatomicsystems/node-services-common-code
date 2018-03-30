@@ -4,11 +4,15 @@ const bunyan = require("bunyan");
 const path = require("path");
 const fs = require("fs");
 const env_config_1 = require("./env-config");
+const createCWStream = require('bunyan-cloudwatch');
+const parent = require('parent-package-json');
+const isLambda = require('is-lambda');
 let logger;
 exports.logger = logger;
-try {
-    const createCWStream = require('bunyan-cloudwatch');
-    const parent = require('parent-package-json');
+if (isLambda) {
+    exports.logger = logger = console;
+}
+else {
     let pkg = null;
     let localPackagePath = path.join(process.cwd(), 'package.json');
     if (fs.existsSync(localPackagePath)) {
@@ -53,9 +57,6 @@ try {
     process.on('SIGTERM', () => {
         logger.fatal('SIGTERM');
     });
-}
-catch (err) {
-    console.log('[node-services-common-code] Failed to initialize logger', err);
 }
 exports.default = logger;
 //# sourceMappingURL=logger.js.map
